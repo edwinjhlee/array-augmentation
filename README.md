@@ -1,6 +1,6 @@
 # array-augmentation
 
-```
+```bash
 npm install git+https://git@github.com/lteam-typescript/array-augmentation.git --save
 ```
 
