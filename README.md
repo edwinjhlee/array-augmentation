@@ -1,7 +1,7 @@
 # array-augmentation
 
 ```bash
-npm install git+https://git@github.com/lteam-typescript/array-augmentation.git --save
+npm install git+ssh://git@github.com/lteam-typescript/array-augmentation.git --save
 ```
 
 
