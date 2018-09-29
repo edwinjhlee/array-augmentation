@@ -20,7 +20,7 @@
   "homepage": "https://github.com/lteam-typescript/array-augmentation#readme",
   "dependencies": {
     "axios": "^0.18.0",
-    "iterator-utils": "git+ssh://git@github.com/lteam-typescript/iterator-utils.git",
+    "iterator-utils": "git+https://git@github.com/lteam-typescript/iterator-utils.git",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
