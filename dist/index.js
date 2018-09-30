@@ -15,6 +15,9 @@ function inject() {
     Array.prototype.imap = function (f) {
         return i.ui.map(f, this);
     };
+    Array.prototype.mapToAsync = function (f) {
+        return i.uai.mapToAsync(f, this);
+    };
     Array.prototype.foreach = function (f = e => { }) {
         return i.ua.foreach(f, this);
     };
@@ -49,12 +52,6 @@ function inject() {
     Array.prototype.foreach = function (f = e => { }) {
         return i.ua.foreach(f, this);
     };
-    Array.prototype.mapToAsync = function (f) {
-        return i.uai.mapToAsync(f, this);
-    };
 }
 exports.inject = inject;
 inject();
-// console.log([1,2,3].ifilter)
-// export default Array
-// export let a = 3
