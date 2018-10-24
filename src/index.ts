@@ -3,8 +3,8 @@ import * as i from "iterator-utils"
 declare global {
     interface Array<T> {
         ifilter: (f: (e: T) => boolean) => i.IterableIteratorX<T>
-        imap: <I, O>(f: (e: I) => O) => i.IterableIteratorX<O>
-        mapToAsync: <I, O>(f: (e: I) => Promise<O> ) => i.AsyncIterableIteratorX<O>
+        imap: <O>(f: (e: T) => O) => i.IterableIteratorX<O>
+        mapToAsync: <O>(f: (e: T) => Promise<O> ) => i.AsyncIterableIteratorX<O>
         foreach: (f: (e: T) => void) => void
         min(): T
         max(): T

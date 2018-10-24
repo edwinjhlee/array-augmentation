@@ -14,6 +14,8 @@ console.log(
         .toList()
 )
 
+const _ = ([1,2,3,4]).imap(e => e*3)
+
 function* w(){
     for (let i=0; i<10; ++i) yield i
 }
