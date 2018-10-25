@@ -5,7 +5,7 @@ require("./index");
 console.log("============");
 console.log([1, 2, 3].ifilter);
 console.log([1, 2, 3, 4, 5]
-    .iter()
+    .iterx()
     .filter((e) => e % 2 === 0)
     .map(e => e * 100)
     .toArray());

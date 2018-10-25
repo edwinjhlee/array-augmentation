@@ -6,10 +6,10 @@ declare global {
     interface Array<T> {
 
         // KEY
-        iter: () => IterX.Type<T>
+        iterx: () => IterX.Type<T>
 
         // Important
-        mapToAsync: <O>(f: (e: T) => Promise<O> ) => AsyncIterX.Type<T>
+        mapToAsyncIterX: <O>(f: (e: T) => Promise<O> ) => AsyncIterX.Type<T>
 
         /*/ Good to have
         min(): T
@@ -28,11 +28,11 @@ export function iter<T>(arr: Array<T>){
 
 export function inject(){
 
-    Array.prototype.iter = function(){
+    Array.prototype.iterx = function(){
         return iter(this)
     }
 
-    Array.prototype.mapToAsync = function <I, O>(f: (e: I) => Promise<O>) {
+    Array.prototype.mapToAsyncIterX = function <I, O>(f: (e: I) => Promise<O>) {
         return utils.asyncIterator.mapToAsync<I, O>(this, f)
     }
 

@@ -9,7 +9,7 @@ console.log(([1,2,3] as any).ifilter)
 
 console.log( 
     [1, 2, 3, 4, 5]
-        .iter()
+        .iterx()
         .filter( (e: number)=>e%2===0 )
         .map( e=>e*100)
         .toArray()

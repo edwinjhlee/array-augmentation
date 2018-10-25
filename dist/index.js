@@ -6,10 +6,10 @@ function iter(arr) {
 }
 exports.iter = iter;
 function inject() {
-    Array.prototype.iter = function () {
+    Array.prototype.iterx = function () {
         return iter(this);
     };
-    Array.prototype.mapToAsync = function (f) {
+    Array.prototype.mapToAsyncIterX = function (f) {
         return iterator_utils_1.utils.asyncIterator.mapToAsync(this, f);
     };
     /*
