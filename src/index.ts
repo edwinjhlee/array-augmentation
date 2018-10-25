@@ -1,71 +1,54 @@
-import * as i from "iterator-utils"
+import { IterX, AsyncIterX, iterx, utils } from "iterator-utils";
+
+export type CONDITION<T> = string | RegExp | ((astr: T)=>boolean)
 
 declare global {
     interface Array<T> {
-        ifilter: (f: (e: T) => boolean) => i.IterableIteratorX<T>
-        imap: <O>(f: (e: T) => O) => i.IterableIteratorX<O>
-        mapToAsync: <O>(f: (e: T) => Promise<O> ) => i.AsyncIterableIteratorX<O>
-        foreach: (f: (e: T) => void) => void
+
+        // KEY
+        iter: () => IterX.Type<T>
+
+        // Important
+        mapToAsync: <O>(f: (e: T) => Promise<O> ) => AsyncIterX.Type<T>
+
+        /*/ Good to have
         min(): T
         max(): T
+        
+
+        // optional
+        chain(...iteratorList: Array<Iterable<T>>): Array<T>
+        */
     }
+}
+
+export function iter<T>(arr: Array<T>){
+    return iterx(arr[Symbol.iterator]())
 }
 
 export function inject(){
 
-    Array.prototype.ifilter = function <T>(f: (e: T) => boolean) {
-        return i.ui.filter<T>(f, this)
-    }
-
-    Array.prototype.imap = function <I, O>(f: (e: I) => O) {
-        return i.ui.map<I, O>(f, this)
+    Array.prototype.iter = function(){
+        return iter(this)
     }
 
     Array.prototype.mapToAsync = function <I, O>(f: (e: I) => Promise<O>) {
-        return i.uai.mapToAsync(f, this)
+        return utils.asyncIterator.mapToAsync<I, O>(this, f)
     }
 
-    Array.prototype.foreach = function <T>(f: (e: T) => void = e => {}) {
-        return i.ua.foreach(f, this)
-    }
-
+    /*
     Array.prototype.min = function <T>() {
-        const i = this[Symbol.iterator]()
-
-        const r = i.next()
-        if (r.done) {
-            return null
-        }
-        let ret = r.value
-
-        while (true) {
-            const r = i.next()
-            if (r.done === true) return ret
-            ret = ret > r.value ? r.value : ret
-        }
+        return utils.iterator.min(this)
     }
 
     Array.prototype.max = function <T>() {
-        const i = this[Symbol.iterator]()
-
-        const r = i.next()
-        if (r.done) {
-            return null
-        }
-        let ret = r.value
-
-        while (true) {
-            const r = i.next()
-            if (r.done === true) return ret
-            ret = ret < r.value ? r.value : ret
-        }
+        return utils.iterator.max(this)
     }
 
-    Array.prototype.foreach = function <T>(f: (e: T) => void = e => {}) {
-        return i.ua.foreach(f, this)
+    Array.prototype.chain = function <T>(...iteratorList: Array<Iterable<T>>) {
+        return utils.array.chain(this, ...iteratorList)
     }
-
-    
+    */
 
 }
 

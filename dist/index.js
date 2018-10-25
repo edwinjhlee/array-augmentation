@@ -1,57 +1,30 @@
 "use strict";
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const i = __importStar(require("iterator-utils"));
+const iterator_utils_1 = require("iterator-utils");
+function iter(arr) {
+    return iterator_utils_1.iterx(arr[Symbol.iterator]());
+}
+exports.iter = iter;
 function inject() {
-    Array.prototype.ifilter = function (f) {
-        return i.ui.filter(f, this);
-    };
-    Array.prototype.imap = function (f) {
-        return i.ui.map(f, this);
+    Array.prototype.iter = function () {
+        return iter(this);
     };
     Array.prototype.mapToAsync = function (f) {
-        return i.uai.mapToAsync(f, this);
+        return iterator_utils_1.utils.asyncIterator.mapToAsync(this, f);
     };
-    Array.prototype.foreach = function (f = e => { }) {
-        return i.ua.foreach(f, this);
-    };
-    Array.prototype.min = function () {
-        const i = this[Symbol.iterator]();
-        const r = i.next();
-        if (r.done) {
-            return null;
-        }
-        let ret = r.value;
-        while (true) {
-            const r = i.next();
-            if (r.done === true)
-                return ret;
-            ret = ret > r.value ? r.value : ret;
-        }
-    };
-    Array.prototype.max = function () {
-        const i = this[Symbol.iterator]();
-        const r = i.next();
-        if (r.done) {
-            return null;
-        }
-        let ret = r.value;
-        while (true) {
-            const r = i.next();
-            if (r.done === true)
-                return ret;
-            ret = ret < r.value ? r.value : ret;
-        }
-    };
-    Array.prototype.foreach = function (f = e => { }) {
-        return i.ua.foreach(f, this);
-    };
+    /*
+    Array.prototype.min = function <T>() {
+        return utils.iterator.min(this)
+    }
+
+    Array.prototype.max = function <T>() {
+        return utils.iterator.max(this)
+    }
+
+    Array.prototype.chain = function <T>(...iteratorList: Array<Iterable<T>>) {
+        return utils.array.chain(this, ...iteratorList)
+    }
+    */
 }
 exports.inject = inject;
 inject();
