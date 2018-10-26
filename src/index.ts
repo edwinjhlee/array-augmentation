@@ -22,7 +22,7 @@ declare global {
     }
 }
 
-export function iter<T>(arr: Array<T>){
+function iter<T>(arr: Array<T>){
     return iterx(arr[Symbol.iterator]())
 }
 
