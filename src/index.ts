@@ -33,7 +33,7 @@ export function inject(){
     }
 
     Array.prototype.mapToAsyncIterX = function <I, O>(f: (e: I) => Promise<O>) {
-        return utils.asyncIterator.mapToAsync<I, O>(this, f)
+        return utils.asyncIter.mapToAsync<I, O>(this, f)
     }
 
     /*

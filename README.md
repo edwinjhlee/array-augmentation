@@ -15,8 +15,9 @@ import "array-augmentation"
 console.log( 
     [1, 2, 3, 4, 5]
         .iterx()
-        .filter( (e: number)=>e%2===0 )
-        .map( e=>e*100)
+        .filter( (e): number)=>e%2===0 )
+        .take( (e, i) => i > 0)
+        .map( e=>e*100 )
         .toArray()
 )
 ```

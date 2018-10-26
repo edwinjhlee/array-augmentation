@@ -1,5 +1,5 @@
 
-import { iterx } from "iterator-utils";
+import { iterx, t } from "iterator-utils";
 
 import "./index"
 
@@ -11,23 +11,24 @@ console.log(
     [1, 2, 3, 4, 5]
         .iterx()
         .filter( (e: number)=>e%2===0 )
-        .map( e=>e*100)
+        .map( e=>e*100 )
         .toArray()
 )
 
-const _ = ([1,2,3,4]).map(e => e*3)
 
-function* w(){
-    for (let i=0; i<10; ++i) yield i
+function calPrime(n: number){
+    const primes = [2]
+    t.seq(3, 2, n)
+        .iterx()
+        .take( (num: number) => primes.iterx()
+                .take(e => e*e <= num)
+                .map(e => num % e !== 0).allTrue()
+        )
+        .forEach(e => primes.push(e))
+    return primes
 }
 
-iterx(w()).toArray()
-
-console.log(Math.max(...[1,2,1,3,1]))
-console.log(Math.min(...[1,2,1,3,1]))
-
-console.log([1,2,1,3,1])
-
-console.log(iterx([1,2,3]).map(e => e * 38).toArray())
+const tt = calPrime(100).iterx().groupBy(e => e%10)
+console.log(tt)
 
 
